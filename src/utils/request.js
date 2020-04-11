@@ -38,14 +38,11 @@ service.interceptors.response.use(response => {
 
     if (res.code === 403) {
       store.commit('logout');
-      MessageBox.confirm('验证失败，点击确定重新登录', '状态异常', {
+      console.log(res);
+      MessageBox.confirm(res.msg, '状态异常', {
         confirmButtonText: '确定',
         type: 'warning'
       }).then(() => {
-        router.push('/login').then(r => {
-        });
-        location.reload()
-      }).catch(() => {
         router.push('/login').then(r => {
         });
         location.reload()
