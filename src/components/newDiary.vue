@@ -56,7 +56,7 @@
           this.$message.error("标题不能为空");
         } else {
           diary.addDiary(this.diary.title, this.diary.body).then(res => {
-            this.$message.success(res.data.msg);
+            this.$message.success(res.msg);
             history.back();
           })
         }
@@ -76,7 +76,7 @@
         let formData = new FormData();
         formData.append('file', $file);
         diary.uploadImg(formData).then(res => {
-          this.$refs.md.$img2Url(pos, res.data.data);
+          this.$refs.md.$img2Url(pos, res.data);
         })
       },
 

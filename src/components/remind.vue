@@ -118,7 +118,6 @@
 <script>
   import memo from "../api/memo";
   import date from "../utils/date";
-  import user from "../api/user";
 
   export default {
     name: "remind",
@@ -144,10 +143,10 @@
             {required: true, message: '请输入邮箱地址', trigger: 'blur'},
             {type: 'email', message: '请输入正确的邮箱地址', trigger: 'blur'}
           ],
-          memoDate:[
+          memoDate: [
             {required: true, message: '请选择提醒时间', trigger: 'blur'},
           ],
-          memoContent:[
+          memoContent: [
             {required: true, message: '请输入提醒内容', trigger: 'blur'},
           ]
         },
@@ -181,10 +180,8 @@
           type: 'warning'
         }).then(() => {
           memo.deleteMemo(row).then(res => {
-            if (res.data.code === 0) {
-              this.$message.success(res.data.msg);
-              this.loadRemind();
-            }
+            this.$message.success(res.msg);
+            this.loadRemind();
           })
         }).catch(() => {
           this.$message({
@@ -205,8 +202,8 @@
 
       loadRemind() {
         memo.getMemoListByType(0, this.currentPage, this.pageSize).then(res => {
-          this.remindList = res.data.data.list;
-          this.total = res.data.data.total;
+          this.remindList = res.data.list;
+          this.total = res.data.total;
         })
       },
 
@@ -217,12 +214,12 @@
       //新增
       addRemind(formName) {
         this.$refs[formName].validate((valid) => {
-          if (valid){
+          if (valid) {
             memo.addMemo(0,
               this.remind.memoEmail, 0,
               this.remind.memoDate,
               this.remind.memoContent).then(res => {
-              this.$message.success(res.data.msg);
+              this.$message.success(res.msg);
               this.visible = false;
               this.loadRemind();
             });

@@ -51,16 +51,6 @@
   export default {
     name: "forget",
     data() {
-      let checkEmail = (rule, value, callback) => {
-        user.checkEmail(value).then(res => {
-          if (res.data.code === 0) {
-            callback("该邮箱尚未注册！");
-          } else {
-            callback();
-          }
-        })
-      };
-
       let validatePass = (rule, value, callback) => {
         if (this.userForm.checkPass !== '') {
           this.$refs.forgetForm.validateField('checkPass');
@@ -90,7 +80,6 @@
           email: [
             {required: true, message: '请输入邮箱地址', trigger: 'blur'},
             {type: 'email', message: '请输入正确的邮箱地址', trigger: 'blur'},
-            {validator: checkEmail, trigger: 'blur'},
           ],
           verifyCode: [
             {required: true, message: '请输入验证码', trigger: 'blur'},
@@ -111,23 +100,14 @@
     methods: {
       forget() {
         user.forget(this.userForm.email, this.userForm.checkPass, this.userForm.verifyCode).then(res => {
-          if (res.data.code !== 0) {
-            this.$message.error(res.data.msg);
-          } else {
-            this.$message.success(res.data.msg);
-            this.$router.push("/login");
-          }
+          this.$message.success(res.msg);
+          this.$router.push("/login");
         });
       },
 
       sendMail() {
         user.verifyEmail(this.userForm.email).then(res => {
-          if (res.data.code !== 0) {
-            this.$message.error(res.data.msg);
-          } else {
-            this.$message.success(res.data.msg);
-            // this.$router.push('/login')
-          }
+          this.$message.success(res.msg);
         });
         const TIME_COUNT = 60;
         if (!this.userForm.timer) {

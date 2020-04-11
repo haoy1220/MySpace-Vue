@@ -4,7 +4,9 @@
       <!--===============顶部布局：返回、保存、新建一行==========================================================================-->
       <div>
         <el-link :underline="false" @click="back()"><i class="el-icon-back">Back</i></el-link>
-        <el-button icon="el-icon-plus" size="small" style="text-align: right;float: right" @click="preNewColumn()">新建一行</el-button>
+        <el-button icon="el-icon-plus" size="small" style="text-align: right;float: right" @click="preNewColumn()">
+          新建一行
+        </el-button>
         <!--=========================================新增行================================================--->
         <el-dialog :visible.sync="newColumnView" title="新增行" width="300px" style="text-align: center">
           <el-form v-model=columnBody status-icon>
@@ -18,14 +20,16 @@
         </el-dialog>
         <!--===============================================================================================-->
         <el-button icon="el-icon-plus" type="success" size="small"
-                   style="text-align: right;float: right;margin-right: 20px" @click="saveProject()">保存</el-button>
+                   style="text-align: right;float: right;margin-right: 20px" @click="saveProject()">保存
+        </el-button>
       </div>
 
       <!--      为了id改变会被watch到-->
       <p style="display: none">{{id = this.$route.params.id}}</p>
 
       <!--    没有日记的情况-->
-      <el-card shadow="hover" v-if="column.length<=0" style="margin: 20% auto;text-align: center">该项目还没启动，从新建一行开始吧！</el-card>
+      <el-card shadow="hover" v-if="column.length<=0" style="margin: 20% auto;text-align: center">该项目还没启动，从新建一行开始吧！
+      </el-card>
 
       <div class="t-ctn">
         <div class="s-ctn">
@@ -218,7 +222,7 @@
       //加载项目详情数据
       loadProject() {
         project.getProjectDetail(this.id).then(res => {
-          this.column = JSON.parse(res.data.data);
+          this.column = JSON.parse(res.data);
           this.column = this.tranArray(this.column);
         })
       },
@@ -241,9 +245,7 @@
       //保存项目详情
       saveProject() {
         project.saveProject(this.id, JSON.stringify(this.column)).then(res => {
-          if (res.data.code === 0) {
-            this.$message.success(res.data.msg);
-          }
+          this.$message.success(res.msg);
         })
       },
 

@@ -71,14 +71,9 @@
       loadDiary() {
         diary.searchDiary(this.searchText, this.currentPage, this.pageSize).then(res => {
           this.$message.success("查询结束");
-          let resData = res.data.data;
-          if (res.data.code === 0) {
-            this.total = resData.total;
-            this.diaryList = resData.list;
-          } else {
-            this.total = 0;
-            this.diaryList = [];
-          }
+          let resData = res.data;
+          this.total = resData.total;
+          this.diaryList = resData.list;
         })
       },
 

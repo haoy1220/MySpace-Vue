@@ -41,7 +41,7 @@
 
     created() {
       diary.getArchive().then(res => {
-        this.archive = res.data.data;
+        this.archive = res.data;
       })
     },
 

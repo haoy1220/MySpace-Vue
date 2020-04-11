@@ -59,10 +59,10 @@
 
       loadDiary() {
         diary.getDiaryById(this.id).then(res => {
-          this.diaryTitle = res.data.data.diaryTitle;
-          this.diaryBody = res.data.data.diaryBody;
-          this.updateTime = res.data.data.updateTime;
-          this.createTime = res.data.data.createTime;
+          this.diaryTitle = res.data.diaryTitle;
+          this.diaryBody = res.data.diaryBody;
+          this.updateTime = res.data.updateTime;
+          this.createTime = res.data.createTime;
         })
       },
 

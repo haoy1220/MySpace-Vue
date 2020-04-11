@@ -52,11 +52,7 @@
     data() {
       let checkEmail = (rule, value, callback) => {
         user.checkEmail(value).then(res => {
-          if (res.data.code !== 200) {
-            callback(res.data.msg);
-          } else {
-            callback();
-          }
+          callback();
         })
       };
       let validatePass = (rule, value, callback) => {
@@ -110,7 +106,7 @@
         this.$refs[formName].validate((valid) => {
           if (valid) {
             user.register(this.userForm.email, this.userForm.nickname, this.userForm.checkPass, this.userForm.sex).then(res => {
-              this.$message.success(res.data.msg);
+              this.$message.success(res.msg);
               this.$router.push("/login");
             })
           }

@@ -133,11 +133,9 @@
       //加载分页数据
       loadProject() {
         project.getProjectList(this.projectState, this.currentPage, this.pageSize).then(res => {
-          if (res.data.code === 0) {
-            let resData = res.data.data;
-            this.total = resData.total;
-            this.projectList = resData.list;
-          }
+          let resData = res.data;
+          this.total = resData.total;
+          this.projectList = resData.list;
         })
       },
 
@@ -145,13 +143,9 @@
         this.$refs[formName].validate(valid => {
           if (valid) {
             project.newProject(this.project.projectBody, this.project.projectDesc).then(res => {
-              if (res.data.code === 0) {
-                this.$message.success(res.data.msg);
-                this.visible = false;
-                this.loadProject();
-              } else {
-                this.$message.error(res.data.msg);
-              }
+              this.$message.success(res.msg);
+              this.visible = false;
+              this.loadProject();
             })
           }
         });

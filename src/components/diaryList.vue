@@ -69,11 +69,9 @@
       //加载分页数据
       loadDiary() {
         diary.getDiaryList(this.currentPage, this.pageSize).then(res => {
-          if (res.data.code === 0) {
-            let resData = res.data.data;
+            let resData = res.data;
             this.total = resData.total;
             this.diaryList = resData.list;
-          }
         })
       },
 

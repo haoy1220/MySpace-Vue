@@ -54,8 +54,8 @@
     watch: {
       id() {
         diary.getDiaryById(this.id).then(res => {
-          this.diaryTitle = res.data.data.diaryTitle;
-          this.diaryBody = res.data.data.diaryBody;
+          this.diaryTitle = res.data.diaryTitle;
+          this.diaryBody = res.data.diaryBody;
         })
       }
     },
@@ -72,7 +72,7 @@
           this.$message.error("标题不能为空");
         } else {
           diary.updateDiary(this.id, this.diaryTitle, this.diaryBody).then(res => {
-            this.$message.success(res.data.msg);
+            this.$message.success(res.msg);
             history.back();
           })
         }
@@ -86,7 +86,7 @@
         let formData = new FormData();
         formData.append('file', $file);
         diary.uploadImg(formData).then(res => {
-          this.$refs.md.$img2Url(pos, res.data.data);
+          this.$refs.md.$img2Url(pos, res.data);
         })
       },
 

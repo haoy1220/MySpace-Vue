@@ -28,12 +28,7 @@
     methods: {
       active: function () {
         user.active(this.$route.query.id,this.$route.query.activeCode).then(res => {
-          if (res.data.code === 0) {
             this.activeSuccess = true;
-          } else {
-            this.$message.error(res.data.msg);
-            this.$router.push('/register')
-          }
         })
       }
     }

@@ -97,7 +97,7 @@
             </el-col>
           </el-form-item>
 
-          <el-form-item prop="memoPre">
+          <el-form-item>
             <el-select v-model="anniversary.preTime" placeholder="请选择提前提醒的时间" style="width: 100%;">
               <el-option
                 v-for="item in options"
@@ -160,9 +160,6 @@
           memoDate: [
             {required: true, message: '请选择纪念日时间', trigger: 'blur'},
           ],
-          memoPre: [
-            {required: true, message: '请选择提前时间', trigger: 'blur'},
-          ],
           memoContent: [
             {required: true, message: '请输入纪念意义', trigger: 'blur'},
           ]
@@ -172,7 +169,7 @@
           memoEmail: '',
           memoDate: '',
           memoContent: "",
-          preTime: ''
+          preTime: 0
         },
         //提前选项
         options: [{
@@ -236,10 +233,8 @@
           type: 'warning'
         }).then(() => {
           memo.deleteMemo(row).then(res => {
-            if (res.data.code === 0) {
-              this.$message.success(res.data.msg);
-              this.loadAnniversary();
-            }
+            this.$message.success(res.msg);
+            this.loadAnniversary();
           })
         }).catch(() => {
           this.$message({
@@ -260,8 +255,8 @@
       //加载生日
       loadAnniversary() {
         memo.getMemoListByType(this.memoType, this.currentPage, this.pageSize).then(res => {
-          this.anniversaryList = res.data.data.list;
-          this.total = res.data.data.total;
+          this.anniversaryList = res.data.list;
+          this.total = res.data.total;
         })
       },
 
@@ -279,7 +274,7 @@
               this.anniversary.preTime,
               this.anniversary.memoDate,
               this.anniversary.memoContent).then(res => {
-              this.$message.success(res.data.msg);
+              this.$message.success(res.msg);
               this.visible = false;
               this.loadAnniversary();
             })

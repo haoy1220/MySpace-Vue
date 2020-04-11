@@ -82,7 +82,7 @@
           type: 'warning'
         }).then(() => {
           diary.deleteDiary(id).then(res => {
-            this.$message.success(res.data.msg);
+            this.$message.success(res.msg);
             location.reload();
           })
         })

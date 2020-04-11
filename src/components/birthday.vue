@@ -97,7 +97,7 @@
             </el-col>
           </el-form-item>
 
-          <el-form-item prop="memoPre">
+          <el-form-item>
             <el-select v-model="birthday.preTime" placeholder="请选择提前提醒的时间" style="width: 100%;" @change="getPreTime">
               <el-option
                 v-for="item in options"
@@ -160,9 +160,6 @@
           memoDate: [
             {required: true, message: '请选择生日时间', trigger: 'blur'},
           ],
-          memoPre: [
-            {required: true, message: '请选择提前时间', trigger: 'blur'},
-          ],
           memoContent: [
             {required: true, message: '请输入生日人姓名', trigger: 'blur'},
           ]
@@ -173,7 +170,7 @@
           memoEmail: '',
           memoDate: '',
           memoContent: "",
-          preTime: ''
+          preTime: 0
         },
         //提前选项
         options: [{
@@ -237,10 +234,8 @@
           type: 'warning'
         }).then(() => {
           memo.deleteMemo(row).then(res => {
-            if (res.data.code === 0) {
-              this.$message.success(res.data.msg);
-              this.loadBirthday();
-            }
+            this.$message.success(res.msg);
+            this.loadBirthday();
           })
         }).catch(() => {
           this.$message({
@@ -261,8 +256,8 @@
       //加载生日
       loadBirthday() {
         memo.getMemoListByType(this.memoType, this.currentPage, this.pageSize).then(res => {
-          this.birthdayList = res.data.data.list;
-          this.total = res.data.data.total;
+          this.birthdayList = res.data.list;
+          this.total = res.data.total;
         })
       },
 
@@ -286,7 +281,7 @@
               this.birthday.preTime,
               this.birthday.memoDate,
               this.birthday.memoContent).then(res => {
-              this.$message.success(res.data.msg);
+              this.$message.success(res.msg);
               this.visible = false;
               this.loadBirthday();
             })

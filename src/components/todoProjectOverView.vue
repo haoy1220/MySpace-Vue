@@ -111,7 +111,7 @@
           type: 'warning'
         }).then(() => {
           project.deleteProject(id).then(res => {
-            this.$message.success(res.data.msg);
+            this.$message.success(res.msg);
             location.reload();
           })
         })
@@ -125,7 +125,7 @@
           type: 'warning'
         }).then(() => {
           project.finishProject(id).then(res => {
-            this.$message.success(res.data.msg);
+            this.$message.success(res.msg);
             location.reload();
           })
         })
@@ -135,12 +135,9 @@
         this.$refs[formName].validate(valid => {
           if (valid) {
             project.updateProject(this.id, this.project.body, this.project.desc).then(res => {
-              console.log(res);
-              if (res.data.code === 0) {
-                this.$message.success(res.data.msg);
-                this.updateView = false;
-                location.reload();
-              }
+              this.$message.success(res.msg);
+              this.updateView = false;
+              location.reload();
             });
           }
         });

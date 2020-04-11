@@ -95,10 +95,8 @@
           type: 'warning'
         }).then(() => {
           user.deleteUser(row).then(res => {
-            if (res.data.code === 0) {
-              this.$message.success(res.data.msg);
-              this.loadUsers();
-            }
+            this.$message.success(res.data.msg);
+            this.loadUsers();
           })
         }).catch(() => {
           this.$message({
@@ -123,8 +121,8 @@
 
       loadUsers() {
         user.getUsers(this.currentPage, this.pageSize).then(res => {
-          this.userList = res.data.data.list;
-          this.total = res.data.data.total;
+          this.userList = res.data.list;
+          this.total = res.data.total;
         })
       },
 

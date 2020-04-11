@@ -71,11 +71,9 @@
       //加载分页数据
       loadProject() {
         project.getProjectList(this.projectState, this.currentPage, this.pageSize).then(res => {
-          if (res.data.code === 0) {
-            let resData = res.data.data;
-            this.total = resData.total;
-            this.projectList = resData.list;
-          }
+          let resData = res.data;
+          this.total = resData.total;
+          this.projectList = resData.list;
         })
       },
 
