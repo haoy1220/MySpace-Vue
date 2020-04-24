@@ -40,12 +40,13 @@
             style="margin: 10px 20% 0 60%"
             class="hidden-xs-only">
             <el-input placeholder="搜索日记" v-model="searchText" suffix-icon="el-icon-search"
-                      @keyup.enter.native="search"/>
+                      @keyup.enter.native="search()"/>
           </div>
 
           <el-dialog
             :title=userForm.email
             :visible.sync='looked'
+            :close-on-click-modal=false
             center
             width="25%">
             <el-form status-icon :rules="rules" :model="userForm" ref="updateForm" :hide-required-asterisk=true>
@@ -54,8 +55,8 @@
               </el-form-item>
 
 
-              <el-form-item label="性别">
-                <el-radio-group v-model="userForm.sex === 1 ? '男' : '女' ">
+              <el-form-item label="性别" >
+                <el-radio-group v-model="userForm.sex" :disabled=true>
                   <el-radio label="男"/>
                   <el-radio label="女"/>
                 </el-radio-group>
@@ -142,7 +143,7 @@
         this.$router.push({ //路由跳转
           path: '/searchDiary/' + this.searchText
         });
-        this.searchText = '';//清空搜索框
+        // this.searchText = '';//清空搜索框
       },
 
       logout() {
@@ -163,7 +164,7 @@
             let resDate = res.data;
             this.userForm.email = resDate.email;
             this.userForm.nickname = resDate.nickname;
-            this.userForm.sex = resDate.sex;
+            this.userForm.sex = resDate.sex === 1 ? "男" : "女";
             this.userForm.createTime = this.getDatetime(resDate.createTime);
             this.userForm.updateTime = this.getDatetime(resDate.updateTime);
         })
@@ -173,7 +174,7 @@
       updateUserInfo(formName) {
         this.$refs[formName].validate(valid => {
           if (valid) {
-            if (this.userForm.nickname !== this.$store.state.nickname) {
+            if (this.userForm.nickname !== this.$store.state.nickname ) {
               user.updateUserInfo(this.userForm.email, this.userForm.nickname).then(res => {
                   this.$store.commit('refreshNickname', res.data.nickname);
                   this.$message.success(res.msg);
@@ -190,4 +191,5 @@
 </script>
 
 <style scoped>
+
 </style>

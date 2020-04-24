@@ -3,8 +3,12 @@
     <el-form ref="loginFrom" :model="userForm" class="login-box" status-icon :rules="rules">
 
       <h1 class="welcome">
-        欢迎登录
+        "效率空间"
       </h1>
+
+      <h2 style="text-align: center">
+        欢迎登录
+      </h2>
 
       <el-form-item prop="email">
         <el-input prefix-icon="el-icon-user" type="text" placeholder="请输入邮箱" v-model="userForm.email"/>
@@ -81,6 +85,9 @@
 
   .welcome {
     text-align: center;
+    margin-bottom: 50px;
+    color: #66b1ff;
+    size: A3;
   }
 
 </style>

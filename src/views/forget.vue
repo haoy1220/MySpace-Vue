@@ -33,7 +33,7 @@
 
 
       <el-form-item class="">
-        <el-button type="primary" @click="forget()" class="button">确认修改</el-button>
+        <el-button type="primary" @click="forget('forgetForm')" class="button">确认修改</el-button>
       </el-form-item>
 
       <el-form-item label-width="220px">
@@ -98,10 +98,14 @@
     },
 
     methods: {
-      forget() {
-        user.forget(this.userForm.email, this.userForm.checkPass, this.userForm.verifyCode).then(res => {
-          this.$message.success(res.msg);
-          this.$router.push("/login");
+      forget(formName) {
+        this.$refs[formName].validate((valid) => {
+          if (valid){
+            user.forget(this.userForm.email, this.userForm.checkPass, this.userForm.verifyCode).then(res => {
+              this.$message.success(res.msg);
+              this.$router.push("/login");
+            });
+          }
         });
       },
 

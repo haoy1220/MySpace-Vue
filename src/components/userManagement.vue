@@ -95,7 +95,7 @@
           type: 'warning'
         }).then(() => {
           user.deleteUser(row).then(res => {
-            this.$message.success(res.data.msg);
+            this.$message.success(res.msg);
             this.loadUsers();
           })
         }).catch(() => {

@@ -8,7 +8,7 @@
           新建一行
         </el-button>
         <!--=========================================新增行================================================--->
-        <el-dialog :visible.sync="newColumnView" title="新增行" width="300px" style="text-align: center">
+        <el-dialog :visible.sync="newColumnView" title="新增行" width="300px" style="text-align: center" :close-on-click-modal="false">
           <el-form v-model=columnBody status-icon>
             <el-form-item style="width: 100%">
               <el-input v-model=columnBody placeholder="请输入行内容"/>
@@ -82,7 +82,7 @@
             </el-card>
 
             <!--=======================================新增卡片=================================================--->
-            <el-dialog :visible.sync="newCardView" title="新增卡片" width="300px" style="text-align: center">
+            <el-dialog :visible.sync="newCardView" title="新增卡片" width="300px" style="text-align: center" :close-on-click-modal="false">
               <el-form v-model="cardBody" status-icon>
                 <el-form-item style="width: 100%">
                   <el-input v-model="cardBody" placeholder="请输入卡片内容"/>
@@ -94,7 +94,7 @@
             </el-dialog>
             <!--===============================================================================================--->
             <!--=======================================修改卡片=================================================--->
-            <el-dialog :visible.sync="updateCardView" title="修改卡片" width="300px" style="text-align: center">
+            <el-dialog :visible.sync="updateCardView" title="修改卡片" width="300px" style="text-align: center" :close-on-click-modal="false">
               <el-form v-model="cardBody" status-icon>
                 <el-form-item style="width: 100%">
                   <el-input v-model="cardBody" placeholder="请输入卡片内容"/>
@@ -107,7 +107,7 @@
             <!--===============================================================================================--->
 
             <!--=========================================修改行================================================--->
-            <el-dialog :visible.sync="updateColumnView" title="修改行" width="300px" style="text-align: center">
+            <el-dialog :visible.sync="updateColumnView" title="修改行" width="300px" style="text-align: center" :close-on-click-modal="false">
               <el-form v-model=columnBody status-icon>
                 <el-form-item style="width: 100%">
                   <el-input v-model=columnBody placeholder="请输入行内容"/>
@@ -122,18 +122,6 @@
         </div>
 
       </div>
-
-      <!--      -->
-      <!--      <div v-for="col in column" style="width: 200px;margin: 18px 30px 0 0">-->
-      <!--        <draggable v-model="col.projectChild" :options="dragOptions" :move="onMove" @start="isDragging=true" @end="isDragging=false">-->
-      <!--          <transition-group type="transition">-->
-      <!--            <li v-for="child in col.projectChild" :key="child.projectContent">-->
-      <!--              {{child.projectContent}}-->
-      <!--              <span >{{child.projectContent}}</span>-->
-      <!--            </li>-->
-      <!--          </transition-group>-->
-      <!--        </draggable>-->
-      <!--      </div>-->
 
 
     </el-card>

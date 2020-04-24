@@ -3,7 +3,7 @@
     <el-card id="project">
       <el-button slot="header" type="success" @click="visible=true">新建项目</el-button>
       <!--      新建项目填写表单-->
-      <el-dialog :visible.sync="visible" title="新建项目" width="400px" :center="true">
+      <el-dialog :visible.sync="visible" title="新建项目" width="400px" :center="true" :close-on-click-modal="false">
         <el-form
           id="new-box"
           status-icon
@@ -37,8 +37,8 @@
 
         <el-tab-pane>
           <span slot="label"><i class="el-icon-document">正在进行</i></span>
-          <div id="projectList" v-model="projectList">
-            <div v-for="project in projectList" style="margin: 18px">
+          <div id="projectList">
+            <div v-for="project in projectList" style="margin: 18px" :key="project.id">
               <todo-project-over-view
                 :id="project.id"
                 :body="project.projectBody"

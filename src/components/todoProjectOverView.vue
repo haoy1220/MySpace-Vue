@@ -29,7 +29,7 @@
 
 
     <!--    修改框==========================================================================-->
-    <el-dialog :visible.sync="updateView" title="修改项目" width="400px" style="text-align: center">
+    <el-dialog :visible.sync="updateView" title="修改项目" width="400px" style="text-align: center" :close-on-click-modal="false">
       <el-form status-icon
                :model="project"
                ref="updateForm"

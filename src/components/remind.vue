@@ -65,7 +65,7 @@
       <el-button type="success" @click="visible=true">新建</el-button>
 
       <!--新增-->
-      <el-dialog :visible.sync="visible" title="新建提醒" width="400px" :center="true">
+      <el-dialog :visible.sync="visible" title="新建提醒" width="400px" :center="true" :close-on-click-modal="false">
         <el-form
           class="new-box"
           status-icon

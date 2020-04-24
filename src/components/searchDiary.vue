@@ -2,7 +2,7 @@
   <div id="searchDiary">
     <p style="display: none">{{searchText = this.$route.params.searchText}}</p>
     <el-card shadow="hover" v-if="diaryList.length<=0" style="margin: 20% auto">暂无符合条件的内容</el-card>
-    <div v-if="diaryList.length>0" v-for="diary in diaryList" style="margin: 24px">
+    <div v-for="diary in diaryList" style="margin: 24px" :key="diary.id">
       <!--      日记概览-->
       <diaryOverView
         :id="diary.id"
@@ -70,11 +70,11 @@
       //加载分页数据
       loadDiary() {
         diary.searchDiary(this.searchText, this.currentPage, this.pageSize).then(res => {
-          this.$message.success("查询结束");
           let resData = res.data;
+          this.$message.success("查询成功，共"+ resData.total +"篇");
           this.total = resData.total;
           this.diaryList = resData.list;
-        })
+        }).catch((e) => {});
       },
 
 
