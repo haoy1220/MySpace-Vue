@@ -61,9 +61,9 @@
                 <div style="height: auto">
                   <draggable v-model="item.child" :move="onMove" :options="dragOptions" @start="isDragging=true"
                              @end="isDragging=false">
-                    <transition-group type="transition">
+                    <transition-group type="transition" class="list-group">
                       <el-card shadow="hover" body-style="padding:0" style="margin: 5px 5px 5px 5px;"
-                               v-for="(i,c) in item.child" :key="c">
+                               v-for="(i,c) in item.child" :key="c" class="list-group-item">
                         <i class="el-icon-bank-card" style="margin: 0 0 0 10px"/>
 
                         <el-dropdown trigger="click" style="float: right;margin:0 10px 0 0">
@@ -220,7 +220,7 @@
         const relatedElement = relatedContext.element;
         const draggedElement = draggedContext.element;
         return (
-          (!relatedElement || !relatedElement.fixed)
+          (!relatedElement || !relatedElement.fixed) && !draggedElement.fixed
         );
       },
 
@@ -371,6 +371,31 @@
 
   .el-icon-arrow-down {
     font-size: 12px;
+  }
+
+  .flip-list-move {
+    transition: transform 0.5s;
+  }
+
+  .no-move {
+    transition: transform 0s;
+  }
+
+  .ghost {
+    opacity: 0.5;
+    background: #c8ebfb;
+  }
+
+  .list-group {
+    min-height: 20px;
+  }
+
+  .list-group-item {
+    cursor: move;
+  }
+
+  .list-group-item i {
+    cursor: pointer;
   }
 
 </style>

@@ -10,9 +10,7 @@
         <el-tab-pane label="用户画像" name="third">
           <user-portrait/>
         </el-tab-pane>
-<!--        <el-tab-pane label="配置管理" name="second">-->
-<!--          <config/>-->
-<!--        </el-tab-pane>-->
+
       </el-tabs>
     </el-card>
   </div>
@@ -34,7 +32,6 @@
 
     methods: {
       handleClick(tab, event) {
-        console.log(tab, event);
       },
     }
   };
